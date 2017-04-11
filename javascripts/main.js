@@ -1,7 +1,6 @@
-var dinoArray =[];
 
 $.ajax('./db/dinosaurs.json').done(function(data){
-	dinoArray = data.dinosaurs;
+	var dinoArray = data.dinosaurs;
 	makeDome(dinoArray);
 }).fail(function(error){
 	console.log("you've made a huge mistake", error);
@@ -23,3 +22,23 @@ function makeDome(myArrayToPrint) {
 	 $("#dinosaurs").append(myDomString);
 }
 
+$("#dinosaurs").on("click", ".dinoCard", function(e){
+	$("dinoCard").removeClass("dottedBorder");
+	$(this).addClass("dottedBorder");
+	$("#textbox").val("").focus();
+});
+
+$("#textbox").keyup(mirrorText);
+
+function mirrorText(e) {
+	var selectedCard = $(".dottedBorder");
+	var bioTyped = $("#textbox").val();
+	console.log(bioTyped)
+	var bio = $(".dottedBorder").find("p.bio");
+	bio.html(bioTyped);
+
+	if (e.keyCode === 13) {
+		$("#textbox").val("");
+	}
+
+}
