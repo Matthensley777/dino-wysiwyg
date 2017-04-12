@@ -1,12 +1,14 @@
 
 $.ajax('./db/dinosaurs.json').done(function(data){
 	var dinoArray = data.dinosaurs;
-	makeDome(dinoArray);
+	makeDom(dinoArray);
 }).fail(function(error){
 	console.log("you've made a huge mistake", error);
 });
 
-function makeDome(myArrayToPrint) {
+function makeDom(myArrayToPrint) {
+		if(counter % 3 === 0) {
+myDomString += `<div class="row"`;
 	 var myDomString = "";
 	 for ( var i = 0; i < myArrayToPrint.length; i++) {
 	 	myDomString += `<div class="dinoCard">`;
@@ -16,8 +18,11 @@ function makeDome(myArrayToPrint) {
 	 	myDomString += `<p class="bio">${myArrayToPrint[i].bio}</p>`;
 	 	myDomString += `<footer>${myArrayToPrint[i].info}</footer>`;
 	 	myDomString += `</section>`;
-
 	 	myDomString += `</div>`;
+	 	counter++;
+	 	if(counter % 3 === 0) {
+	 		myDomString+= `</div>;`
+	 	}
 	 }
 	 $("#dinosaurs").append(myDomString);
 }
@@ -33,7 +38,6 @@ $("#textbox").keyup(mirrorText);
 function mirrorText(e) {
 	var selectedCard = $(".dottedBorder");
 	var bioTyped = $("#textbox").val();
-	console.log(bioTyped)
 	var bio = $(".dottedBorder").find("p.bio");
 	bio.html(bioTyped);
 

@@ -1,3 +1,28 @@
 .dottedBorder {
 	border: 2px dotted;
 }
+
+.container {
+	max-width: 300px;
+	display: inline-flex;
+	background-color: lightyellow;
+}
+
+.container: .row:nth-of-type(2n) {
+	background-color: lightblue;
+}
+
+img {
+	max-width: 200px;
+}
+#dinosaurs .dinocard {
+	background-color: yellow;
+}
+
+#dinosaurs .row:nth-of-type(2n) .dinoCard:nth-of-type(2n) {
+	background-color: yellow;
+}
+
+#dinosaurs .row:nth-of-type(2n+1) .dinoCard:nth-of-type(2n+1) {
+	background-color: yellow;
+}
